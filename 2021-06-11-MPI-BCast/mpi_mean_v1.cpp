@@ -15,11 +15,11 @@ int main(int argc, char **argv)
   MPI_Comm_size(MPI_COMM_WORLD, &np);
   MPI_Comm_rank(MPI_COMM_WORLD, &pid);
 
-  int NSIZE = 0;
+  int NSIZE = std::atoi(argv[1]);
   double start = 0; 
   if (0 == pid) {
-    std::cout << "Escribe el tamanho del arreglo:\n";
-    std::cin >> NSIZE;
+    //std::cout << "Escribe el tamanho del arreglo:\n";
+    //std::cin >> NSIZE;
     start = MPI_Wtime();
     for(int npid = 1; npid < np; ++npid) {
       MPI_Send(&NSIZE, 1, MPI_INT, npid, 0, MPI_COMM_WORLD);
